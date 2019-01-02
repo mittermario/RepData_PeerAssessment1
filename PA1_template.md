@@ -53,10 +53,9 @@ summary(activity_monitoring_data)
 ```r
 total_number_of_steps_per_day <- with(activity_monitoring_data, 
                                       tapply(steps, date, sum, na.rm = TRUE))
-plot(total_number_of_steps_per_day, 
+hist(total_number_of_steps_per_day, 
      main = 'Total number of steps per day', 
-     xlab = paste('Day ( starting on ',as.character(names(total_number_of_steps_per_day)[1]),')'), ylab = 'Number of steps', 
-     type = 'h', lwd = 7, lend=1)
+     xlab = 'Total number of steps', ylab = 'Number of days')
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
@@ -130,16 +129,15 @@ sum(na_row_indices)
 activity_monitoring_data_imputed <- mutate(activity_monitoring_data, steps = impute(steps, mean))
 ```
 
-### Imputing strategy increased/creates some of the total number of steps per day
+### Imputing strategy shifts considerate fraction of days towards middle of histogram
 
 
 ```r
 total_number_of_steps_per_day_imputed <- with(activity_monitoring_data_imputed, 
                                       tapply(steps, date, sum, na.rm = TRUE))
-plot(total_number_of_steps_per_day_imputed, 
+hist(total_number_of_steps_per_day_imputed, 
      main = 'Total number of steps per day (imputed)', 
-     xlab = paste('Day ( starting on ',as.character(names(total_number_of_steps_per_day_imputed)[1]),')'), ylab = 'Number of steps', 
-     type = 'h', lwd = 7, lend=1)
+     xlab = 'Total number of steps', ylab = 'Number of days')
 ```
 
 ![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
